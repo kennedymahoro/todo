@@ -4,7 +4,6 @@ const Task = (props) => {
   return (
     <div className="content">
       <div className="texts">
-        <span>{props.uniqe}</span>
         <span>{props.title}</span>
         <span>{props.text}</span>
       </div>

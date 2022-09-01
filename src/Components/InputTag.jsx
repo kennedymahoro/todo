@@ -2,10 +2,9 @@ const InputTag = (props) => {
   return (
     <div>
       <label>
-        {" "}
         {`Enter a ${props.lable}`}
         <input
-          type="text"
+          type={props.type}
           value={props.name}
           onChange={(e) => props.setName(e)}
         />

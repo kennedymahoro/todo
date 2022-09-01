@@ -3,12 +3,18 @@ import Task from "./Components/Task.jsx";
 import InputTag from "./Components/InputTag.jsx";
 import "./App.css";
 const App = () => {
-  const [name, setName] = useState("");
-  const changeName = (e) => {
-    setName(e.target.value);
+  let ADD_STATE = 0;
+  const [title, setTitle] = useState("");
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
   };
-  const log = () => {
-    console.log(`Your name is ${name}`);
+  const [id, setNewId] = useState("");
+  const changeNewId = (e) => {
+    setNewId(e.target.value);
+  };
+  const [text, setNewText] = useState("");
+  const changeNewText = (e) => {
+    setNewText(e.target.value);
   };
   const [data, setData] = useState([
     {
@@ -32,6 +38,17 @@ const App = () => {
       return items.filter((item) => item.id !== ID);
     });
   };
+  const log = () => {
+    ADD_STATE = ADD_STATE + 1;
+    if (ADD_STATE == 3) {
+      ADD_STATE = 0;
+      const NewState = { id, title, text };
+      setData((item) => {
+        item.push(NewState);
+        return item;
+      });
+    }
+  };
   const mappedData = data.map((item) => {
     return (
       <Task
@@ -46,7 +63,27 @@ const App = () => {
   return (
     <div>
       <h1>TaskBar</h1>
-      <InputTag lable="name" name={name} setName={changeName} log={log} />
+      <InputTag
+        lable="Title"
+        type="text"
+        name={title}
+        setName={changeTitle}
+        log={log}
+      />
+      <InputTag
+        lable="Text"
+        type="text"
+        name={text}
+        setName={changeNewText}
+        log={log}
+      />
+      <InputTag
+        lable="Id"
+        type="text"
+        name={id}
+        setName={changeNewId}
+        log={log}
+      />
       {mappedData}
     </div>
   );
