@@ -5,7 +5,6 @@ const Task = (props) => {
     <div className="content">
       <div className="texts">
         <span>{props.title}</span>
-        <span>{props.text}</span>
       </div>
       <button
         onClick={() => {
