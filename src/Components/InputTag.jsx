@@ -1,6 +1,6 @@
 const InputTag = (props) => {
   return (
-    <div>
+    <form onSubmit={props.log}>
       <label>
         {`Enter a ${props.lable} `}
         <input
@@ -10,13 +10,14 @@ const InputTag = (props) => {
         />
       </label>
       <button
-        onClick={(e) => {
+      /*onClick={(e) => {
           return props.log(e);
         }}
+        */
       >
         Submit
       </button>
-    </div>
+    </form>
   );
 };
 export default InputTag;

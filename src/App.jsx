@@ -4,7 +4,6 @@ import InputTag from "./Components/InputTag.jsx";
 import "./App.css";
 const App = () => {
   const [title, setTitle] = useState("");
-  const id = Date.now();
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -23,18 +22,21 @@ const App = () => {
     },
   ]);
   const log = (e) => {
-    e.currentTarget.disabled = true;
-    const NewState = { id, title };
-    setData((item) => {
-      item.push(NewState);
-      console.log(data);
+    e.preventDefault();
+    const id = Date.now();
+    data.push({ id, title });
+    setData(data);
+    /* setData((item) => {
+      item.push({ id, title });
       return item;
     });
+    */
   };
   const handle = (ID) => {
-    setData((items) => {
-      return items.filter((item) => item.id !== ID);
+    const deletedItem = data.filter((item) => {
+      return item.id != ID;
     });
+    setData(deletedItem);
   };
   const mappedData = data.map((item) => {
     return <Task title={item.title} handleClick={handle} key={item.id} />;
